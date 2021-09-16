@@ -44,7 +44,11 @@
 <script>
   log('Map ----------');
   const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
-  for (const a of map) log(a);
+  for (const a of map.keys()) log(a);
+  for (const a of map.values()) log(a);
+  for (const a of map.entries()) log(a);
+
+  
 </script>
 
 ## 이터러블/이터레이터 프로토콜
@@ -55,19 +59,39 @@
 ### 사용자 정의 이터러블을 통해 알아보기
 
 <script>
-  // log(iterator.next());
-  // log(iterator.next());
-  // log(iterator.next());
+  const iterable = {
+    [Symbol.iterator]() {
+      let i = 3;
+      return {
+        next() {
+          return i == 0 ? {done: true} : { value: i--, done: false }
+        },
+        [Symbol.iterator]() {
+          return this;
+        }
+      }
+    }
+  }
+  let iterator = iterable[Symbol.iterator]();
+  log(iterator.next())
+  log(iterator.next())
+  log(iterator.next())
+  log(iterator.next())
+  for (const a of iterator) log(a);
 
-
-  // const arr2 = [1, 2, 3];
-  // let iter2 = arr2[Symbol.iterator]();
+  const arr2 = [1, 2, 3];
+  let iter2 = arr2[Symbol.iterator]();
   // iter2.next();
-  // log(iter2[Symbol.iterator]() == iter2);
-  // for (const a of iter2) log(a);
+  log(iter2[Symbol.iterator]() == iter2)
+  for (const a of iter2) log(a);
+
 </script>
 
 ## 전개 연산자
 
 <script>
+  console.clear()
+  const a = [1, 2];
+  // a[Symbol.iterator] = null
+  log([...a, ...[3, 4]]);
 </script>

@@ -8,22 +8,22 @@
 // apply1
 // times
 
-// log = n => console.log(n)
+log = n => console.log(n)
 
-// const apply1 = f => f(1);
-// const add2 = a => a + 2;
-// log(apply1(add2))
-// log(apply1(a => {
-//   return a - 1
-// }))
+const apply1 = f => f(1);
+const add2 = a => a + 2;
+log(apply1(add2))
+log(apply1(a => {
+  return a - 1
+}))
 
-// const times = (f, n) => {
-//   let i = -1;
-//   while(++i , n) f(i)
-// }
+const times = (f, n) => {
+  let i = -1;
+  while(++i != n) f(i)
+}
 
-// times(log, 3);
-// times(a => log(a + 10), 3);
+times(log, 3);
+times(a => log(a + 10), 3);
 
 
 // 함수를 만들어 리턴하는 함수 (클로저를 만들어 리턴하는 함수)
